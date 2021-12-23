@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title> new document </title> 
+ <style type="text/css">
+    .text-v-center:{
+      border-style: solid;
+    }
+    .text-v-center2:{
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      border-style: solid;
+      background-color: "gray;";
+    }
+    .wrap { 
+      align-items: center;
+      justify-content: center;
+    }
+    .classb{
+        display: inline-block;
+        border-style: solid;
+        background-color: "gray;";
+        text-align: middle;
+        width: 400pt;
+        height: 280pt;
+        border-radius: 15px;
+    }
+    .button {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #fff;
+      background-color: #CD853F  ;
+      border-color: #8B4513 ;
+    }
+    .theend{
+      font-weight: bolder;
+      font-size: 15pt;
+    }
+
+    .button:hover {background-color:#A52A2A }
+
+
+   </style>
+ </head> 
+ <body>
+  <script type="text/javascript">
+  function count(){
+    var txt1  = parseInt( document.getElementById('txt1').value);//獲取第一個輸入框的值
+    var txt2  = parseInt( document.getElementById('txt2').value);//獲取第二個輸入框的值
+    var select = document.getElementById('select').value;//獲取選擇框的值
+    var result = '';
+    switch (select)
+     {
+      case '+':
+        result = txt1 + txt2;
+        break;
+      case '-':
+        result = txt1 - txt2;
+        break;
+      case '*':
+        result = txt1 * txt2;
+        break;
+      case '/':
+        result = txt1 / txt2;
+        break; 
+     }
+     document.getElementById('fruit').textContent= result;//設定結果輸入框的值 
+  }
+ </script> 
+ <center>
+    <div class="classb" style="text-align: center;background-color:#D3D3D3;">
+        <p class="theend" >JS Calculator</p>
+        <p>Number 1</p>
+        <input type='text' id='txt1' style="width: 350pt;"> 
+        <p>Number 2</p>
+        <input type='text' id='txt2' style="width: 350pt"> 
+        <p>Operater way?</p>
+        <p>
+        <select id='select' style="width: 350pt">
+          <option value='+'>+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+      </p>
+      <p >
+        <button class="button" value="Add" onclick = "count()" style="width: 350pt;height: 20pt;">Add
+        </button>
+      </p>
+      Result = <em id='fruit'></em>
+    </div>
+ </center>
+
+
+ </body>
+</html>
