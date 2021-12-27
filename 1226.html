@@ -2,27 +2,11 @@
 <html>
 <head>
 	<style type="text/css">
-    .text-v-center:{
-      border-style: solid;
-    }
-    .text-v-center2:{
-      content: "";
-      display: inline-block;
-      width: 0;
-      height: 100%;
-      vertical-align: middle;
-      border-style: solid;
-      background-color: "gray;";
-    }
-    .wrap { 
-      align-items: center;
-      justify-content: center;
-    }
     .classb{
         display: inline-block;
         border-style: solid;
-        background-color: "gray;";
-        text-align: middle;
+        background-color: "gray";
+        text-align: center;
         width: 400pt;
         height: 280pt;
         border-radius: 15px;
@@ -35,6 +19,7 @@
       color: #fff;
       background-color: #CD853F  ;
       border-color: #8B4513 ;
+      text-align: center;
     }
     .theend{
       font-weight: bolder;
@@ -42,63 +27,61 @@
     }
 
     .button:hover {background-color:#A52A2A }
+    #result{
+      margin-top:10px;
+      background: skyblue;
+      padding:10px;
+      border-radius:5px;
+    }
+
+     .myTable tr:nth-child(odd){background-color:#e8e8e8;}
 
 
    </style>
 </head>
 <body>
-	<center>
-	<div  id="block" class="classb" style="text-align: center;background-color:#D3D3D3;">
-		<h2 class="theend">Guessing Game</h2>
-		<form>
-			<label>Your Guess (1 ~ 100)</label>
-			<input type="number" id="num" name="guess">
-		</form>
-		<button class="button" id="guessBtn" value="play" onclick="guess()" style="width: 250pt;height: 20pt;">Play</button><br>
-
-		<tr>Result=<table id="table"></table></tr>
-	</div>
-	</center>
 	<script>
-		var random = Math.floor((Math.random() * 100) +1);
-		var min = 1;
-		var max = 100;
+        var ran = Math.floor((Math.random()*100+1));
+        var result;
+        var max = 100;
+        var min = 0;
 
-		function guess(){
-			input = document.getElementById("num").value;
+        function guess(){
+             var input  = parseInt( document.getElementById('num').value);//獲取第一個輸入框的值
+             if (input==ran) {alert("答對了!");
+               location.reload();
+                }else if(input>ran) {
+                  max = input;
+                  var tr = document.createElement("tr");
+                  var td = document.createElement("document");
+                  var text = document.createTextNode(min + "~" + max);
+                  td.appendChild(text);
+                  tr.appendChild(td);
+                  document.getElementById("table").appendChild(tr);
+                }else if (input<ran){
+                  min = input;
+                  var tr = document.createElement("tr");
+                  var td = document.createElement("document");
+                  var text = document.createTextNode(min + "~" + max);
+                  td.appendChild(text);
+                  tr.appendChild(td);
+                  document.getElementById("table").appendChild(tr);
+                }
 
-			if(input == random){
-				alert("Bingo!");
-				location.reload();
-			}
-
-			while(input != random){
-
-				if(input > random){
-					if(input < max){max = input;}
-
-					var tr = document.createElement("tr");
-					var td = document.createElement("td");
-					var text = document.createTextNode(min + "~" +max);
-					td.appendChild(text);
-					tr.appendChild(td);
-					document.getElementById("table").appendChild(tr);
-					break;
-				}
-				if(input < random){
-					if(input > min){min = input;}
-					var tr = document.createElement("tr");
-					var td = document.createElement("td");
-					var text = document.createTextNode(min + "~" +max);
-					td.appendChild(text);
-					tr.appendChild(td);
-					document.getElementById("table").appendChild(tr);
-					break;
-				}
-				
-		}
-
+           }
 	</script>
+<center>
+    <div class="classb" style="background-color:#D3D3D3; text-align:left;">
+        <p class="theend" style="margin-left: 30px;">Guessing Game</p>
+        <p style="margin-left: 30px;">Your Guess(1 ~ 100)</p>
+        <input type='text' id='num' style="width: 200pt;margin-left: 30px;"> 
+      <p >
+        <button class="button" value="play" onclick="guess()" style="width: 270pt;height: 30pt;margin-left: 30px;">play
+        </button>
+      </p>
+      <div style="border-width: 3px;margin-left: 30px;">Result </div> <table id="table" class="myTable"style="margin-left: 30px;"></table>
+    </div>
+ </center>
 
 </body>
 </html>
